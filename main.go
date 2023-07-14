@@ -5,15 +5,15 @@ import (
 	"net/http"
 )
 
+func HelloHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Hey Gopher, you've requested %s\n", r.URL.Path)
+}
+
 func main() {
 	http.HandleFunc("/", HelloHandler)
 
-	fmt.Println("Starting server at port 8080")
+	fmt.Println("Server listening to port 8080")
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		panic(err)
 	}
-}
-
-func HelloHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello, Gophers! You've requested: %s\n", r.URL.Path)
 }
